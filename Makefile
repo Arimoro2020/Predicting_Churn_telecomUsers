@@ -30,11 +30,12 @@ csv: $(PLOT_SOURCE)
 	grep -oP "Training accuracy: \K[0-9.]+" $(PLOT_SOURCE) | tr '\n' ',' | sed 's/,$$$$//' >> $@; \
 	echo >> $@
 
+
 ## plots       : Generate model accuracy plots.
 .PHONY: plots
 plots: $(PLOTS)
-	
-$(PLOTS): $(PLOTS_SOURCE) $(PLOTS)
+
+$(PLOTS): $(PLOT_SOURCE)
 	$(LANGUAGE) $<
 
 ## clean       : Remove auto-generated files.
