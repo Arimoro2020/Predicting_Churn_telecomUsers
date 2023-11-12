@@ -24,13 +24,13 @@ $(ANALYSIS): $(ANALYSIS_SOURCE) $(CLEANED_DATA)
 .PHONY: csv
 csv: $(PLOT_SOURCE)
 $(PLOT_SOURCE): %.txt
-        echo "Model, Test, Training" > $@;
-        model_name=$(basename %.txt); \ 
-        echo -n "$(model_name), " >> $@; \
-        grep -oP "Training accuracy: \K[0-9.]+" %.txt | tr '\n' ',' | sed 's/,$$//' >> $@; \
-                echo >> $(PLOT_SOURCE); \
+    echo "Model, Test, Training" > $@;\
+    model_name=$(basename %.txt); \
+    echo -n "$(model_name), " >> $@; \grep -oP "Training accuracy: \K[0-9.]+" %.txt | tr '\n' ',' | sed 's/,$$//' >> $@; \
+    echo >> $(PLOT_SOURCE)  
 
-
+     
+  
 ## plots       : Generate model accuracy plots.
 .PHONY: plots
 plots: $(PLOTS)
