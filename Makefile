@@ -25,12 +25,10 @@ $(ANALYSIS): $(ANALYSIS_SOURCE) $(CLEANED_DATA)
 .PHONY: csv
 csv: $(PLOT_SOURCE)
 	@echo "Model, Test, Training" > $@; \
-	for file in $(PLOT_SOURCE); do \
-		model_name=$$(basename $$file .txt); \
-		echo -n "$$model_name, " >> $@; \
-		grep -oP "Training accuracy: \K[0-9.]+" $$file | tr '\n' ',' | sed 's/,$$$$//' >> $@; \
-		echo >> $@; \
-	done
+	model_name=$$(basename $(PLOT_SOURCE) .txt); \
+	echo -n "$$model_name, " >> $@; \
+	grep -oP "Training accuracy: \K[0-9.]+" $(PLOT_SOURCE) | tr '\n' ',' | sed 's/,$$$$//' >> $@; \
+	echo >> $@
 
 ## plots       : Generate model accuracy plots.
 .PHONY: plots
@@ -48,3 +46,4 @@ clean:
 .PHONY: help
 help: Makefile
 	@sed -n 's/^##//p' $<
+
