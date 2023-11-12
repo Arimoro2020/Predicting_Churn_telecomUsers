@@ -1,4 +1,4 @@
-name: security_scan
+name: workflow_all
 
 on: [push]
 
