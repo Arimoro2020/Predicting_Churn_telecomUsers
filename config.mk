@@ -8,7 +8,7 @@ CLEANED_DATA = DataCleansing_Telecom_Churn.xlsx
 
 USERS = telecom_users.csv 
 
-PLOTS_SOURCE = model_acurracies.csv
+PLOT_SOURCE = model_acurracies.csv
 
 PLOTS =  ModelAccuracyPlot.ipynb
 
