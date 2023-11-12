@@ -1,15 +1,15 @@
 LANGUAGE=python
 
-DATA_CLEANING = Data_cleaning.pynb
+DATA_CLEANING = 01_Data_cleaning.ipynb
 
-MODEL_SOURCE= Model_building.ipynb
+MODEL_SOURCE= Model_Building.ipynb
 
-CLEANED_DATA = Data_cleaning_Telecom_Churn.xlsx
+CLEANED_DATA = DataCleansing_Telecom_Churn.xlsx
 
-USERS = Telecom_users.csv 
-
-ANALYSIS_SOURCE = ExploratoryDataAnalysis.ipynb
+USERS = telecom_users.csv 
 
 PLOTS_SOURCE = model_acurracies.csv
 
 PLOTS =  ModelAccuracyPlot.ipynb
+
+ANALYSIS_SOURCE = 02_ExploratoryDataAnalysis.ipynb
