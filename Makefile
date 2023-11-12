@@ -20,29 +20,31 @@ analyses: $(ANALYSIS)
 	
 $(ANALYSIS): $(ANALYSIS_SOURCE) $(CLEANED_DATA)
 	$(LANGUAGE) $<
-##  csv     : Generate the CSV file.
+
+## csv     : Generate the CSV file.
 .PHONY: csv
 csv: $(PLOT_SOURCE)
-$(PLOT_SOURCE): %.txt
-    echo "Model, Test, Training" > $@;\
-    model_name=$(basename %.txt); \
-    echo -n "$(model_name), " >> $@; \grep -oP "Training accuracy: \K[0-9.]+" %.txt | tr '\n' ',' | sed 's/,$$//' >> $@; \
-    echo >> $(PLOT_SOURCE)  
+	@echo "Model, Test, Training" > $@; \
+	for file in $(PLOT_SOURCE); do \
+		model_name=$$(basename $$file .txt); \
+		echo -n "$$model_name, " >> $@; \
+		grep -oP "Training accuracy: \K[0-9.]+" $$file | tr '\n' ',' | sed 's/,$$$$//' >> $@; \
+		echo >> $@; \
+	done
 
-     
-  
 ## plots       : Generate model accuracy plots.
 .PHONY: plots
 plots: $(PLOTS)
 	
 $(PLOTS): $(PLOTS_SOURCE) $(PLOTS)
 	$(LANGUAGE) $<
+
 ## clean       : Remove auto-generated files.
 .PHONY: clean
 clean:
 	rm -f $(CLEANED_DATA)
 	rm -f $(PLOT_SOURCE)
 
-.PHONY : help
-help : Makefile
+.PHONY: help
+help: Makefile
 	@sed -n 's/^##//p' $<
